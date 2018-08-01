@@ -18,7 +18,7 @@ r = rdap.RDAPLookup()
 
 @app.route('/')
 async def index(request):
-    return await response.file('index.html')
+    return await response.file('/opt/ipshaman-server/index.html')
 
 
 @app.route("/", methods=['POST',])
