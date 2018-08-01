@@ -1,3 +1,4 @@
+"""ipshaman filtering"""
 
 valid_fields = [
     # geoip
@@ -27,6 +28,12 @@ valid_fields = [
 
 
 def parse_filter(syntax):
+    """
+    Parse filter syntax of comma seperated key value pairs into a dictionary.
+
+    Example: "country_code=US,city=Boulder" => {"country_code":"US", "city":"Boulder"}
+    """
+
     filters = {}
 
     for i in syntax.split(','):
@@ -37,20 +44,20 @@ def parse_filter(syntax):
         field, value = terms
         field = field.lower()
         if field not in valid_fields:
-            return "Filter error: {} is not a valid field.".format(field)
+            print("Error: {} is not a valid field.".format(field))
+            return
 
         filters[field] = value
     
     if filters:
         return filters
-    return None
 
 
 def parse_data(data, filters):
+    """Parse returned data, and return data if filter matches."""
+
     for f in filters:
         if not (f in data and filters[f] == data[f]):
             break
     else:
         return data
-
-    return None

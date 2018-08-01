@@ -51,13 +51,13 @@ $ ipshaman --lookup 23.253.135.79 --geo
 $ ipshaman --lookup 23.253.135.79 --rdap
 {'nir': None, 'asn_registry': 'arin', ... }
 
-$ ipshaman --input examples/list_of_ips_short.txt --geo
+$ ipshaman --input ipshaman/inputs/list_of_ips_short.txt --geo
 {'ip': '244.36.171.60', 'error': 'INVALID_IP'}
 {'country_code': 'ES', 'country_code3': 'ESP', 'country_name': 'Spain', 'region': '58', ... }
 {'country_code': 'NL', 'country_code3': 'NLD', 'country_name': 'Netherlands', 'region': '07', ... }
 ...
 
-$ ipshaman --input examples/list_of_ips_short.txt --geo --filter "country_code=US,region_name=Colorado"
+$ ipshaman --input ipshaman/inputs/list_of_ips_short.txt --geo --filter "country_code=US,region_name=Colorado"
 {'country_code': 'US', 'country_code3': 'USA', 'country_name': 'United States', 'region': 'CO', ... }
 {'country_code': 'US', 'country_code3': 'USA', 'country_name': 'United States', 'region': 'CO', ... }
 ```
