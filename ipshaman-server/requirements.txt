@@ -1,0 +1,3 @@
+GeoIP==1.3.2
+ipwhois==1.0.0
+sanic==0.7.0

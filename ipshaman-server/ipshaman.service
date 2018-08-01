@@ -1,0 +1,13 @@
+[Unit]
+Description=ipshaman
+After=network.target auditd.service
+
+[Service]
+Type=simple
+User=ipshaman
+Group=ipshaman
+ExecStart=/usr/bin/python3.5 /opt/ipshaman-server/server.py
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
