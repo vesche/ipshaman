@@ -1,11 +1,34 @@
 """ipshaman-server RDAP lookup"""
 
-from ipwhois import IPWhois
-import warnings
+import requests
 
 from core import util
 from core.constants import RESP_CODES
 
+
+class RDAPLookup:
+    """
+    Conducts an RDAP query based on the recommended method by ARIN.
+
+    Resource: https://www.arin.net/resources/rdap.html
+    """
+    
+    def __init__(self):
+        self.url = "http://rdap.arin.net/registry/ip/{ip}"
+        self.session = requests.session()
+
+    def lookup(self, ip):
+        if not util.validate_ip(ip):
+            return { 'ip': ip, 'error': RESP_CODES[1] }
+        
+        r = self.session.get(self.url.format(ip=ip))
+        data = r.json()
+        return data
+
+
+"""
+from ipwhois import IPWhois
+import warnings
 
 class RDAPLookup:
     
@@ -25,3 +48,4 @@ class RDAPLookup:
             return data
         else:
             return { 'ip': ip, 'error': RESP_CODES[2] }
+"""

@@ -21,14 +21,15 @@ async def index(request):
     return await response.file('index.html')
 
 
-@app.route("/post", methods=['POST',])
-async def post(request):
+@app.route("/", methods=['POST',])
+async def post_handler(request):
     geo_ip = request.form.get('geo')
     rdap_ip = request.form.get('rdap')
     if geo_ip:
-        return response.json(g.lookup(geo_ip))
+        url = app.url_for('geo', ip=geo_ip)
     elif rdap_ip:
-        return response.json(r.lookup(rdap_ip))
+        url = app.url_for('rdap', ip=rdap_ip)
+    return response.redirect(url)
 
 
 @app.route('/<ip>/geo')

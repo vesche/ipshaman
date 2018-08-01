@@ -7,6 +7,11 @@ from core.constants import RESP_CODES
 
 
 class GeoIPLookup:
+    """
+    Conducts a GeoIP lookup using a local database.
+
+    Resource: https://dev.maxmind.com/geoip/geoip2/geolite2/
+    """
     
     def __init__(self):
         self.g = GeoIP.open("/usr/local/share/GeoIP/GeoLiteCity.dat",

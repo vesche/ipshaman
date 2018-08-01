@@ -30,13 +30,13 @@ class Client:
             server=self.server,
             ip=ip,
             uri='/geo')
-        response = self.session.get(url)
-        return response.json()
+        r = self.session.get(url)
+        return r.json()
     
     def rdap(self, ip):
         url = '{server}{ip}{uri}'.format(
             server=self.server,
             ip=ip,
             uri='/rdap')
-        response = self.session.get(url)
-        return response.json()
+        r = self.session.get(url)
+        return r.json()
