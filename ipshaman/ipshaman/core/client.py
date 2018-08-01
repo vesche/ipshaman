@@ -20,7 +20,7 @@ class Client:
             self.server += '/'
     
     def __repr__(self):
-        return '<{cls}: {server}>'.format(
+        return '<ipshaman {cls}: {server}>'.format(
             cls=self.__class__.__name__,
             server=self.server
         )
