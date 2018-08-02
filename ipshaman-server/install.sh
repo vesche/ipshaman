@@ -21,6 +21,9 @@ apt-get libgeoip-dev python3-pip libcap2-bin
 # install needed python packages
 pip3 install -r requirements.txt
 
+# change index to use proper full path
+sed -i -e 's/index.html/\/opt\/ipshaman-server\/index.html/g' ipshaman-server/server.py
+
 # copy ipshaman-server code into /opt
 mkdir /opt
 cp -r ipshaman-server/ /opt

@@ -10,6 +10,7 @@ from core import rdap
 from sanic import Sanic
 from sanic import response
 
+from core.constants import RESP_CODES
 
 app = Sanic()
 g = geoip.GeoIPLookup()
@@ -18,17 +19,21 @@ r = rdap.RDAPLookup()
 
 @app.route('/')
 async def index(request):
-    return await response.file('/opt/ipshaman-server/index.html')
+    return await response.file('index.html')
 
 
 @app.route("/", methods=['POST',])
 async def post_handler(request):
     geo_ip = request.form.get('geo')
     rdap_ip = request.form.get('rdap')
+
     if geo_ip:
         url = app.url_for('geo', ip=geo_ip)
     elif rdap_ip:
         url = app.url_for('rdap', ip=rdap_ip)
+    else:
+        return response.json({'ip':'', 'error':RESP_CODES[1]})
+
     return response.redirect(url)
 
 
