@@ -9,7 +9,6 @@ import os
 import re
 
 from ipshaman import __version__
-from ipshaman.cli import filt
 from ipshaman.core import client
 
 
@@ -21,19 +20,10 @@ def get_parser():
     parser.add_argument('-l', '--lookup',
                         help='specify an IP address',
                         type=str)
-    parser.add_argument('-g', '--geo',
-                        help='perform a GeoIP lookup',
-                        action='store_true')
-    parser.add_argument('-r', '--rdap',
-                        help='perform a RDAP lookup',
-                        action='store_true')
     parser.add_argument('-i', '--input',
                         help='specify an input file containing IP addresses',
                         type=str)
-    parser.add_argument('-f', '--filter',
-                        help='filter incoming results (see documentation)',
-                        type=str)
-    parser.add_argument('--force',
+    parser.add_argument('-f', '--force',
                         help='force input file to process',
                         action='store_true')
     parser.add_argument('-v', '--version',
@@ -54,31 +44,13 @@ def main():
         parser.print_help()
         return
 
-    if not (args['geo'] or args['rdap']):
-        parser.print_help()
-        return
-    
-    # parse filter syntax
-    raw_filter = args['filter']
-    filters = None
-    if raw_filter:
-        filters = filt.parse_filter(raw_filter)
-
     server = args['server']
     c = client.Client(server)
     
     if args['lookup']:
         ip = args['lookup']
-        if args['geo']:
-            results = c.geoip(ip)
-        elif args['rdap']:
-            results = c.rdap(ip)
-        if filters:
-            filter_results = filt.parse_data(results, filters)
-            if filter_results:
-                print(filter_results)
-        else:
-            print(results)
+        results = c.lookup(ip)
+        print(results)
         return
 
     if args['input']:
@@ -92,22 +64,15 @@ def main():
             for line in f.read().splitlines():
                 ips += re.findall(r'[0-9]+(?:\.[0-9]+){3}', line)
 
-        if (len(ips) > 300) and not args['force']:
-            print("Error: Over 300 IP's in input file!")
-            print("Please don't hurt ipshaman.com, but you can use the --force to ignore this.")
+        if len(ips) > 100 and not args['force']:
+            print("Error: Over 100 IP's in input file!")
+            print("       Please don't hurt ipshaman.com...")
+            print("       However, you can use --force to ignore this.")
             return
 
         for ip in ips:
-            if args['geo']:
-                results = c.geoip(ip)
-            elif args['rdap']:
-                results = c.rdap(ip)
-            if filters:
-                filter_results = filt.parse_data(results, filters)
-                if filter_results:
-                    print(filter_results)
-            else:
-                print(results)
+            results = c.lookup(ip)
+            print(results)
 
 
 if __name__ == '__main__':

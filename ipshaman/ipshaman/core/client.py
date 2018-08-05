@@ -6,8 +6,7 @@ class Client:
     """The ipshaman API client.
 
     The client provides simplistic interaction with the ipshaman-server. It 
-    can send requests to perform GeoIP and RDAP lookups on single and multiple
-    IP addresses.
+    can send requests to perform lookups on single IP addresses.
     """
 
     def __init__(self, server=None):
@@ -25,18 +24,9 @@ class Client:
             server=self.server
         )
 
-    def geoip(self, ip):
-        url = '{server}{ip}{uri}'.format(
+    def lookup(self, ip):
+        url = '{server}{ip}'.format(
             server=self.server,
-            ip=ip,
-            uri='/geo')
-        r = self.session.get(url)
-        return r.json()
-    
-    def rdap(self, ip):
-        url = '{server}{ip}{uri}'.format(
-            server=self.server,
-            ip=ip,
-            uri='/rdap')
+            ip=ip)
         r = self.session.get(url)
         return r.json()
