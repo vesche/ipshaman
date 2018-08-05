@@ -6,7 +6,7 @@ setup(
     version=ipshaman.__version__,
     author='Austin Jackson',
     author_email='vesche@protonmail.com',
-    url='https://github.com/vesche/python_challenge', # TODO: update this
+    url='https://github.com/vesche/ipshaman',
     description='ipshaman cli',
     license='MIT',
     packages=[
