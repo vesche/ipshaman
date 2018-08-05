@@ -21,8 +21,7 @@ async def index(request):
 @app.route("/", methods=['POST',])
 async def post_handler(request):
     ip = request.form.get('ip')
-    if not ip:
-        ip = '8.8.8.8'
+    ip = ip if ip else '8.8.8.8'
     url = app.url_for('lookup', ip=ip)
     return response.redirect(url)
 
