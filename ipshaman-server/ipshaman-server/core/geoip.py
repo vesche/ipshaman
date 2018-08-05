@@ -22,7 +22,8 @@ class GeoIPLookup:
             return { 'ip': ip, 'error': RESP_CODES[1] }
 
         data = self.g.record_by_name(ip)
-        if data:
-            return data
-        else:
-            return { 'ip': ip, 'error': RESP_CODES[2] }
+        if not data:
+            data['error'] = { 'error': RESP_CODES[2] }
+
+        data['ip'] = ip
+        return data
