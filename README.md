@@ -12,8 +12,23 @@ ipshaman is easy to use from the command-line using curl:
 $ dig +short python.org
 23.253.135.79
 
-$ curl ipshaman.com/23.253.135.79
-{"country_code":"US","country_code3":"USA", ... }
+curl ipshaman.com/23.253.135.79
+{
+  "area_code": 210,
+  "city": "San Antonio",
+  "country_code": "US",
+  "country_code3": "USA",
+  "country_name": "United States",
+  "dma_code": 641,
+  "ip": "23.253.135.79",
+  "latitude": 29.48889923095703,
+  "longitude": -98.39869689941406,
+  "metro_code": 641,
+  "postal_code": "78218",
+  "region": "TX",
+  "region_name": "Texas",
+  "time_zone": "America/Chicago"
+}
 ```
 
 ipshaman also has a complete command-line utility with some special features!
