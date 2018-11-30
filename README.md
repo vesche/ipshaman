@@ -12,7 +12,7 @@ ipshaman is easy to use from the command-line using curl:
 $ dig +short python.org
 23.253.135.79
 
-curl ipshaman.com/23.253.135.79
+$ curl ipshaman.com/23.253.135.79
 {
   "area_code": 210,
   "city": "San Antonio",
