@@ -4,6 +4,8 @@
 ipshaman-server
 """
 
+import json
+
 from core import geoip
 
 from sanic import Sanic
@@ -28,7 +30,8 @@ async def post_handler(request):
 
 @app.route('/<ip>')
 async def lookup(request, ip):
-    return response.json(g.lookup(ip))
+    data = json.dumps(g.lookup(ip), indent=2, sort_keys=True)
+    return response.text(data)
 
 
 if __name__ == '__main__':
