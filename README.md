@@ -37,7 +37,7 @@ Install the ipshaman CLI easily with: `pip install ipshaman`
 
 ```
 $ ipshaman --help
-usage: __init__.py [-h] [-s SERVER] [-l LOOKUP] [-i INPUT] [-f] [-v]
+usage: ipshaman.py [-h] [-s SERVER] [-l LOOKUP] [-i INPUT] [-f] [-v]
 
 ipshaman cli
 
