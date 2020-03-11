@@ -6,7 +6,7 @@ After=network.target auditd.service
 Type=simple
 User=ipshaman
 Group=ipshaman
-ExecStart=/usr/bin/python3.5 /opt/ipshaman-server/server.py
+ExecStart=/usr/bin/python3.8 /opt/ipshaman-server/server.py
 KillMode=process
 
 [Install]

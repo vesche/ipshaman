@@ -1,9 +1,9 @@
 """ipshaman Python API driver"""
 
-from .core.client import Client
+from ipshaman.core.client import Client
 
 __all__ = [
     'Client',
 ]
 
-__version__ = '0.0.3'
+__version__ = '0.0.4'

@@ -20,10 +20,9 @@ async def index(request):
     return await response.file('index.html')
 
 
-@app.route("/", methods=['POST',])
+@app.route('/', methods=['POST',])
 async def post_handler(request):
-    ip = request.form.get('ip')
-    ip = ip or '8.8.8.8'
+    ip = request.form.get('ip') or '8.8.8.8'
     url = app.url_for('lookup', ip=ip)
     return response.redirect(url)
 

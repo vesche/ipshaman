@@ -1,16 +1,16 @@
-
 import requests
 
 
 class Client:
-    """The ipshaman API client.
+    """
+    The ipshaman API client.
 
     The client provides simplistic interaction with the ipshaman-server. It 
     can send requests to perform lookups on single IP addresses.
     """
 
     def __init__(self, server=None):
-        self.server = server if server else 'http://ipshaman.com/'
+        self.server = server or 'http://ipshaman.com/'
         self.session = requests.session()
 
         if not self.server.startswith('http'):
@@ -19,14 +19,8 @@ class Client:
             self.server += '/'
     
     def __repr__(self):
-        return '<ipshaman {cls}: {server}>'.format(
-            cls=self.__class__.__name__,
-            server=self.server
-        )
+        return f'<ipshaman {self.__class__.__name__}: {self.server}>'
 
     def lookup(self, ip):
-        url = '{server}{ip}'.format(
-            server=self.server,
-            ip=ip)
-        r = self.session.get(url)
-        return r.json()
+        response = self.session.get(self.server + ip)
+        return response.json()

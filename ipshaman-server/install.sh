@@ -29,7 +29,7 @@ mkdir /opt
 cp -r ipshaman-server/ /opt
 
 # allow non-root to bind port 80
-setcap 'cap_net_bind_service=+ep' /usr/bin/python3.5
+setcap 'cap_net_bind_service=+ep' /usr/bin/python3.8
 
 # create systemd service file
 cp ipshaman.service /lib/systemd/system/

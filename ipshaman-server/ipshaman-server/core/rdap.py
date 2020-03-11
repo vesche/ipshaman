@@ -14,16 +14,15 @@ class RDAPLookup:
     """
     
     def __init__(self):
-        self.url = "http://rdap.arin.net/registry/ip/{ip}"
+        self.url = 'http://rdap.arin.net/registry/ip/'
         self.session = requests.session()
 
     def lookup(self, ip):
         if not util.validate_ip(ip):
-            return { 'ip': ip, 'error': RESP_CODES[1] }
+            return {'ip': ip, 'error': RESP_CODES[1]}
         
-        r = self.session.get(self.url.format(ip=ip))
-        data = r.json()
-        return data
+        response = self.session.get(self.url + ip)
+        return response.json()
 
 
 """

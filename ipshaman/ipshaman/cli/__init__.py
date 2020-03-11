@@ -4,9 +4,9 @@
 ipshaman cli
 """
 
-import argparse
 import os
 import re
+import argparse
 
 from ipshaman import __version__
 from ipshaman.core import client
@@ -14,21 +14,31 @@ from ipshaman.core import client
 
 def get_parser():
     parser = argparse.ArgumentParser(description='ipshaman cli')
-    parser.add_argument('-s', '--server',
-                        help='ipshaman domain or IP to use (default: ipshaman.com)',
-                        type=str)
-    parser.add_argument('-l', '--lookup',
-                        help='specify an IP address',
-                        type=str)
-    parser.add_argument('-i', '--input',
-                        help='specify an input file containing IP addresses',
-                        type=str)
-    parser.add_argument('-f', '--force',
-                        help='force input file to process',
-                        action='store_true')
-    parser.add_argument('-v', '--version',
-                        help='displays the current version of ipshaman',
-                        action='store_true')
+    parser.add_argument(
+        '-s', '--server',
+        help='ipshaman domain or IP to use (default: ipshaman.com)',
+        type=str
+    )
+    parser.add_argument(
+        '-l', '--lookup',
+        help='specify an IP address',
+        type=str
+    )
+    parser.add_argument(
+        '-i', '--input',
+        help='specify an input file containing IP addresses',
+        type=str
+    )
+    parser.add_argument(
+        '-f', '--force',
+        help='force input file to process',
+        action='store_true'
+    )
+    parser.add_argument(
+        '-v', '--version',
+        help='displays the current version of ipshaman',
+        action='store_true'
+    )
     return parser
 
 
@@ -46,7 +56,7 @@ def main():
 
     server = args['server']
     c = client.Client(server)
-    
+
     if args['lookup']:
         ip = args['lookup']
         results = c.lookup(ip)
@@ -56,7 +66,7 @@ def main():
     if args['input']:
         input_file = args['input']
         if not os.path.isfile(input_file):
-            print("Error: Input file does not exist.")
+            print('Error: Input file does not exist.')
             return
 
         ips = []
