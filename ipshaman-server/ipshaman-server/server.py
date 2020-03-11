@@ -11,7 +11,7 @@ from core import geoip
 from sanic import Sanic
 from sanic import response
 
-app = Sanic()
+app = Sanic(name='ipshaman')
 g = geoip.GeoIPLookup()
 
 

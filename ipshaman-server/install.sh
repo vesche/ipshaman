@@ -11,15 +11,16 @@ fi
 # download GeoIP database
 mkdir -p /usr/local/share/GeoIP
 pushd /usr/local/share/GeoIP
-wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+wget https://dl.miyuru.lk/geoip/maxmind/city/maxmind.dat.gz
 gunzip GeoLiteCity.dat.gz
+mv maxmind.dat GeoLiteCity.dat
 popd
 
 # install needed debian packages
-apt-get libgeoip-dev python3-pip libcap2-bin
+apt-get libgeoip-dev libcap2-bin python3.8 python3.8-dev
 
 # install needed python packages
-pip3 install -r requirements.txt
+python3.8 -m pip install -r requirements.txt
 
 # change index to use proper full path
 sed -i -e 's/index.html/\/opt\/ipshaman-server\/index.html/g' ipshaman-server/server.py

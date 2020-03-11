@@ -14,7 +14,7 @@ class GeoIPLookup:
     """
     
     def __init__(self):
-        self.geoip = GeoIP.open(
+        self.g = GeoIP.open(
             '/usr/local/share/GeoIP/GeoLiteCity.dat',
             GeoIP.GEOIP_STANDARD
         )
@@ -23,7 +23,7 @@ class GeoIPLookup:
         if not util.validate_ip(ip):
             return {'ip': ip, 'error': RESP_CODES[1]}
 
-        data = self.geoip.record_by_name(ip)
+        data = self.g.record_by_name(ip)
         if not data:
             data['error'] = {'error': RESP_CODES[2]}
 
