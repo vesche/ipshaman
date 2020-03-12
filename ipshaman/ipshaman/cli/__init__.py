@@ -6,6 +6,7 @@ ipshaman cli
 
 import os
 import re
+import json
 import argparse
 
 from ipshaman import __version__
@@ -60,7 +61,7 @@ def main():
     if args['lookup']:
         ip = args['lookup']
         results = c.lookup(ip)
-        print(results)
+        print(json.dumps(results, indent=2, sort_keys=True))
         return
 
     if args['input']:

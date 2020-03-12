@@ -11,7 +11,7 @@ fi
 # download GeoIP database
 mkdir -p /usr/local/share/GeoIP
 pushd /usr/local/share/GeoIP
-wget https://dl.miyuru.lk/geoip/maxmind/city/maxmind.dat.gz
+wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 gunzip GeoLiteCity.dat.gz
 mv maxmind.dat GeoLiteCity.dat
 popd
