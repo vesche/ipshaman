@@ -17,7 +17,7 @@ def get_parser():
     parser = argparse.ArgumentParser(description='ipshaman cli')
     parser.add_argument(
         '-s', '--server',
-        help='ipshaman domain or IP to use (default: ipshaman.com)',
+        help='ipshaman domain or IP to use',
         type=str
     )
     parser.add_argument(
@@ -77,7 +77,7 @@ def main():
 
         if len(ips) > 100 and not args['force']:
             print("Error: Over 100 IP's in input file!")
-            print("       Please don't hurt ipshaman.com...")
+            print("       Please don't hurt ipshaman...")
             print("       However, you can use --force to ignore this.")
             return
 

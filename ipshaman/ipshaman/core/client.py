@@ -9,8 +9,8 @@ class Client:
     can send requests to perform lookups on single IP addresses.
     """
 
-    def __init__(self, server=None):
-        self.server = server or 'http://ipshaman.com/'
+    def __init__(self, server):
+        self.server = server
         self.session = requests.session()
 
         if not self.server.startswith('http'):

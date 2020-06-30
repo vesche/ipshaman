@@ -1,8 +1,6 @@
 # ipshaman
 
-This is an IP address information gathering utility.
-
-The [ipshaman.com](http://ipshaman.com) web server, client API, and command-line tool all currently live in this repo.
+This is an IP address information gathering utility. The ipshaman web server, client API, and command-line tool all currently live in this repo.
 
 ## Usage
 
@@ -12,7 +10,7 @@ ipshaman is easy to use from the command-line using curl:
 $ dig +short python.org
 23.253.135.79
 
-$ curl ipshaman.com/23.253.135.79
+$ curl ipshaman/23.253.135.79
 {
   "area_code": 210,
   "city": "San Antonio",
@@ -44,7 +42,7 @@ ipshaman cli
 optional arguments:
   -h, --help            show this help message and exit
   -s SERVER, --server SERVER
-                        ipshaman domain or IP to use (default: ipshaman.com)
+                        ipshaman domain or IP to use
   -l LOOKUP, --lookup LOOKUP
                         specify an IP address
   -i INPUT, --input INPUT
@@ -71,7 +69,7 @@ ipshaman can also be used easily within Python code:
 {'country_code': 'US', 'country_code3': 'USA', ... }
 ```
 
-ipshaman also has a primitive web interface: http://ipshaman.com
+ipshaman also has a primitive web interface.
 
 ![scrot](scrot.png)
 
@@ -81,8 +79,8 @@ ipshaman has been tested with Debian 9.5, here's how to get up and running:
 
 ```
 # apt-get update && apt-get install -y git
-# git clone https://github.com/vesche/python_challenge
-# cd python_challenge/ipshaman-server
+# git clone https://github.com/vesche/ipshaman
+# cd ipshaman/ipshaman-server
 # bash install.sh
 ```
 
@@ -104,7 +102,7 @@ Aug 01 01:21:30 debian python3.5[9023]: [2018-08-01 01:21:30 +0000] [9023] [INFO
 Aug 01 01:21:30 debian python3.5[9023]: [2018-08-01 01:21:30 +0000] [9023] [INFO] Starting worker [9023]
 ```
 
-Keep in mind that the ipshaman command-line tool and client API will use [ipshaman.com](http://ipshaman.com) by default, so be sure to specify your own server like so:
+Specify your own server like so:
 
 ```
 $ ipshaman --server localhost:8000 --lookup 23.253.135.79
